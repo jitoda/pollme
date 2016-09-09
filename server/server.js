@@ -2,20 +2,20 @@ var express = require('express');
 var app = express();
 var fs = require('fs');
 var http = require('http');
+var mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost/test');
 
+var db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', function() {
+	console.log('Connected!!');
+	
+});
 
 //static serving html, css, js scrips
 app.use(express.static(__dirname + '/app'));
 
 //all routes tested using postman
-app.get('/test', function(request, response) {
-	response.set({
-  	'Content-Type': 'text/html, charset=utf-8',
-	});
-	response.status(200);
-	response.sendFile(__dirname + '/test.html');
-});
-
 app.get('/', function(request, response) {
 response.send("HI I AM GETTING / HERE");
 });
