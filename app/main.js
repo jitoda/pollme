@@ -1,8 +1,29 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import App from './App'
+import Initial from './component/initial.js'
+import CreatePoll from './component/createPoll.js'
+import Poll from './component/poll.js'
+import View from './component/viewResults.js'
+import Todo from './component/todo.js'
+import MyPolls from './component/myPolls.js'
+import App from './component/app.js'
+import Home from './component/home.js'
+import Signup from './component/signup.js'
+import { Router, Route, Link, IndexRoute, browserHistory } from 'react-router'
 
+ReactDOM.render((
+ <Router>
+ 	<Route path="/" component={Initial}/>
+ 	<Route path="/signup" component={Signup}/>
+  <Route path="/a" component={App}>
+    <Route path="/home" component={Home}/>
+    <Route path="/poll/:id" component={Poll}>
+     <Route path="/create" component={CreatePoll}/>
+     <Route path="/todoPoll" component={Todo}/>
+     <Route path="/viewPoll" component={View}/>
+    </Route>
+    <Route path="/myPolls" component={MyPolls}/>
+  </Route>
 
-
-
-ReactDOM.render(<App />, document.getElementById('root'))
+ </Router>
+), document.body)
