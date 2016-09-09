@@ -4,7 +4,7 @@
   "description": "polling app",
   "main": "index.js",
   "scripts": {
-    "startserver": "nodemon server.js",
+    "startserver": "nodemon server/server.js",
     "start": "webpack-dev-server",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

@@ -9,11 +9,7 @@ var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function() {
 	console.log('Connected!!');
-
-	var User = mongoose.model('User', userSchema);
-
-	var test = new User({ username: 'test', password: 'test' });
-	console.log(test.username);
+	
 });
 
 //static serving html, css, js scrips
