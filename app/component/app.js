@@ -11,7 +11,6 @@ const App = React.createClass({
            <ul>
              <li><Link to="/home">Home</Link></li>
              <li><Link to="/create">Create Poll</Link></li>
-             <li><Link to="/poll">poll</Link></li>
            </ul>
          </nav>
        </header>
