@@ -11,7 +11,8 @@ var userController = {
 		User.findOne({username: req.body.username}, function(err, user){
 			if(user === null){
 				console.log("USER DOESNT EXIST");
-				// res.redirect('/signup');
+				res.redirect('http://localhost:3000/');
+
 			} else if (bcrypt.compareSync(req.body.password, user.password)){
 				next();
 			} else {
@@ -32,8 +33,7 @@ var userController = {
 }
 
 userController.createUser = function(req, res, next) {
-	console.log("request.body in createUser", req);
-  if (req.body.username && req.body.password){
+	if (req.body.username && req.body.password){
   	var user = new User(req.body);
   	user.save(function(err){
   		if(err){

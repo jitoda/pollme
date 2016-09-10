@@ -60,11 +60,10 @@ app.post('/login', userController.verifyUser, userController.getUserId, function
 
 app.post('/signup', userController.createUser, userController.getUserId, function(request, response) {
 	//response.statusCode(200);
-	response.end();
+	response.redirect('http://localhost:3000/#/app');
 });
 
-
-app.listen(3000);
+app.listen(4000);
 
 module.exports = app;
 
