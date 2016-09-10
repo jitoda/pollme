@@ -6,19 +6,11 @@ const Signup = React.createClass({
 			<div>
 				<p> Signup </p>
 		
-				<form>
-          <div>
-            <label> Username: </label>
-            <input type='text' name='username' /> 
-  				</div>
 
-          <div>
-            <label> Password: </label>
-            <input type='text' name='password' /> 
-          </div>
-
-          <button type='submit'> Submit </button>
-
+        <form method="POST" action='http://localhost:4000/signup'>
+          <input name="username" type="text" placeholder="username" />
+          <input name="password" type="password" placeholder="password" />
+          <input type='submit' value="Sign Up" />
         </form>
 
       </div>

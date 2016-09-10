@@ -1,23 +1,30 @@
-var express = require('express');
-var app = express();
-var fs = require('fs');
-var http = require('http');
-var mongoose = require('mongoose');
+const express = require('express');
+const app = express();
+const fs = require('fs');
+const http = require('http');
+const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
+const userController = require('./user/userController');
+const pollController = require('./poll/pollController');
+mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://localhost/test');
 
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function() {
-  console.log('Connected!!');
-
+	console.log('Connected!!');
 });
 
 //static serving html, css, js scrips
 app.use(express.static(__dirname + '/app'));
 
+app.use(bodyParser.urlencoded({ extended: true }));
+
+
 //all routes tested using postman
 app.get('/', function(request, response) {
-response.send("HI I AM GETTING / HERE");
+	response.statusCode(200);
+	response.sendFile(__dirname + "/app/index.html");
 });
 
 app.post('/', function(request, response) {
@@ -33,14 +40,27 @@ response.send("HI I AM POSTING CREATE");
 
 });
 
-app.get('/poll', function(request, response) {
-response.send("HI I AM GETTING POLL");
-
+app.get('/poll', pollController.getPoll, function(request, response) {
+	request.body.id = request.query.id;
+ 	console.log("return is next");
+return; 
 });
 
-app.post('/poll', function(request, response) {
-response.send("I AM POSTING POLL");
 
+app.post('/poll', pollController.createPoll, pollController.getPollId, function(request, response) {
+//response.statusCode(200);
+response.send("I AM SENDING A POLL");
+});
+
+//post request to login to verify user, get userid and end with JSON object and status code 200
+app.post('/login', userController.verifyUser, userController.getUserId, function(request, response) {
+	//response.statusCode(200);
+	response.end({});
+});
+
+app.post('/signup', userController.createUser, userController.getUserId, function(request, response) {
+	//response.statusCode(200);
+	response.redirect('http://localhost:3000/#/app');
 });
 
 app.listen(4000);
