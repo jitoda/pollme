@@ -8,8 +8,8 @@ mongoose.connect('mongodb://localhost/test');
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function() {
-	console.log('Connected!!');
-	
+  console.log('Connected!!');
+
 });
 
 //static serving html, css, js scrips
@@ -46,3 +46,4 @@ response.send("I AM POSTING POLL");
 app.listen(3000);
 
 module.exports = app;
+
