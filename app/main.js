@@ -15,7 +15,7 @@ ReactDOM.render((
  <Router>
  	<Route path="/" component={Initial}/>
  	<Route path="/signup" component={Signup}/>
-  <Route path="/a" component={App}>
+  <Route path="/app" component={App}>
     <Route path="/home" component={Home}/>
     <Route path="/poll/:id" component={Poll}>
      <Route path="/create" component={CreatePoll}/>
@@ -26,4 +26,4 @@ ReactDOM.render((
   </Route>
 
  </Router>
-), document.body)
+), document.getElementById('root'))
