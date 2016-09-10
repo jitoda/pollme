@@ -3,6 +3,8 @@ const app = express();
 const fs = require('fs');
 const http = require('http');
 const bodyParser = require('body-parser');
+const cookieController = require('./util/cookieController');
+const sessionController = require('./session/sessionController');
 const mongoose = require('mongoose');
 const userController = require('./user/userController');
 const pollController = require('./poll/pollController');
@@ -53,14 +55,22 @@ response.send("I AM SENDING A POLL");
 });
 
 //post request to login to verify user, get userid and end with JSON object and status code 200
-app.post('/login', userController.verifyUser, userController.getUserId, function(request, response) {
+app.post('/login', userController.verifyUser, 
+	userController.getUserId, 
+	cookieController.setSSIDCookie, 
+	sessionController.startSession,
+ 	function(request, response) {
 	//response.statusCode(200);
-	response.end({});
+		response.end({});
 });
 
-app.post('/signup', userController.createUser, userController.getUserId, function(request, response) {
+app.post('/signup', userController.createUser, 
+	userController.getUserId, 
+	cookieController.setSSIDCookie, 
+	sessionController.startSession,
+	function(request, response) {
 	//response.statusCode(200);
-	response.redirect('http://localhost:3000/#/app');
+		response.redirect('http://localhost:3000/#/app');
 });
 
 app.listen(4000);
