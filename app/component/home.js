@@ -16,6 +16,7 @@ const Home = React.createClass({
                 <li><a href='#'>Option 4</a></li>
               </ul>
             </div>
+            <div className='user'>Username</div>
           </div>
         </section>
       </div>  
