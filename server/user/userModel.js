@@ -9,6 +9,11 @@ var userSchema = new Schema({
   password: {type: String, required: true}
 });
 
+userSchema.pre('save', function(next) {
+	var user = this;
+  user.password = bcrypt.hashSync(user.password, SALT_WORK_FACTOR);
+  next();
+});
 //insert userSchema.pre
 
 module.exports = mongoose.model('User', userSchema);
