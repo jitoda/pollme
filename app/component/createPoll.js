@@ -1,9 +1,10 @@
 const React = require('react');
+import cookie from 'react-cookie';
 import ReactDOM from 'react-dom'
 
 const CreatePoll = React.createClass({
   getInitialState: function () {
-    return {title: '', choices: []};
+    return {title: '', choices: [], userId: 0};
   },
   
   handleTitleChange: function(e) {
@@ -11,10 +12,10 @@ const CreatePoll = React.createClass({
     console.log(this.state.title);
   },
 
-  postPoll: function(uid) {
+  postPoll: function() {
     let postObj = {};
     postObj.poll_title = this.state.title;
-    postObj.created_by = uid;
+    postObj.created_by = this.state.userId;
     
     let choiceObj = {};
     for (let i = 0; i < this.state.choices; i++) {
@@ -23,10 +24,13 @@ const CreatePoll = React.createClass({
       choiceObj[choiceProp] = this.state.choices[i];
       choiceObj[valueProp] = 0;
     }
-
     postObj.choice = choiceObj;
-
-    $.ajax()
+    console.log("postObj", postObj);
+    $.ajax({
+      type: 'POST',
+      url: 'http://localhost:4000/create',
+      data: postObj
+    });
   },
 
   handleSubmit: function(e) {
@@ -34,12 +38,11 @@ const CreatePoll = React.createClass({
     let text = this.refs.choice.value.trim();
     let array = this.state.choices;
     array.push(text);
-    this.setState({choices: array});
-    console.log(this.state);
+    this.setState({choices: array, userId: cookie.load('ssid')});
+    console.log("this.state in handlesubmit", this.state);
     this.refs.choice.value = '';
   },
-
-  renderOptions: function() {
+     renderOptions: function() {
      return this.state.choices.map( (ele) => <li> {ele} </li> );
   },
 
@@ -47,7 +50,6 @@ const CreatePoll = React.createClass({
     return (
       <div>
         <div>
-
           <h2>Create a poll</h2>
           <form className="user-input" >
             <input 
@@ -66,19 +68,21 @@ const CreatePoll = React.createClass({
               placeholder="Add options"
               ref='choice'
             />
-            <input type='submit' />
-          </form>
 
-          <ul id="options-table">
+          </form>
+           <ul id="options-table">
             {this.renderOptions()}
-          </ul>
+           </ul>
 
         </div>
 
-        <button type="button" className="btn btn-success" onSubmit={this.postPoll}>
+        
+        <button type="button" className="btn btn-success" onClick={this.postPoll}>
 					<span> Create Poll</span>
 				</button>
       </div>
+
+
     )
   }
 });

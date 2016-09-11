@@ -14,7 +14,8 @@ function setCookie(req, res, next) {
 
 function setSSIDCookie(req, res, next) {
 	console.log("RES", res);
-	res.cookie('ssid', res.id, {maxAge: 1000000, httpOnly: true});
+	//httpOnly set to false in order to grab id in react using react-cookie
+	res.cookie('ssid', res.id, {maxAge: 1000000, httpOnly: false});
 	next();
 }
 
