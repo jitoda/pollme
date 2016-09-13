@@ -25,7 +25,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 //all routes tested using postman
 app.get('/', function(request, response) {
-	response.statusCode(200);
+	//response.statusCode(200);
 	response.sendFile(__dirname + "/app/index.html");
 });
 
@@ -38,10 +38,13 @@ response.send("HI I AM GETTING IN HOME");
 });
 
 app.post('/create', function(request, response) {
-response.send("HI I AM POSTING CREATE");
-
+	console.log("I am creating");
+//response.redirect('http://localhost:3000/#/todoPoll');
 });
 
+app.get('/redir', function(request, response){
+	response.redirect('http://localhost:3000/#/todoPoll')
+})
 app.get('/poll', pollController.getPoll, function(request, response) {
 	request.body.id = request.query.id;
  	console.log("return is next");
@@ -61,7 +64,7 @@ app.post('/login', userController.verifyUser,
 	sessionController.startSession,
  	function(request, response) {
 	//response.statusCode(200);
-		response.end({});
+		response.redirect('http://localhost:3000/#/app');
 });
 
 app.post('/signup', userController.createUser, 

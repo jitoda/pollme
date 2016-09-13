@@ -24,7 +24,7 @@ var userController = {
 	getUserId: function(req, res, next) {
 		//possibe funciton not needed 
 		User.find({username: req.body.username}, function(err, user){
-			if(err) throw err; 
+			if(err) console.log("error in getUserId fn");
 			res.id = user[0].id;
 			console.log("WE have created an ID", res.id, "user[0]", user[0]); 
 			next(); 
@@ -37,7 +37,7 @@ userController.createUser = function(req, res, next) {
   	var user = new User(req.body);
   	user.save(function(err){
   		if(err){
-  			return err;
+  			console.log("error in user.save fn"); 
   		} else {
   			next();
   		}
