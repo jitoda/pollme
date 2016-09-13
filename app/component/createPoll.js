@@ -1,16 +1,19 @@
 const React = require('react');
 import ReactDOM from 'react-dom'
 
+// All of our logic is in this createPoll class right now
+// had issues passing props from the poll.js container
 const CreatePoll = React.createClass({
+// hold the title and options as their added in the forms in real time
   getInitialState: function () {
     return {title: '', choices: []};
   },
-  
+// updates the title state  to the value of the input
   handleTitleChange: function(e) {
     this.setState({title: e.target.value});
     console.log(this.state.title);
   },
-
+// creates the poll object that will be posted to the database
   postPoll: function(uid) {
     let postObj = {};
     postObj.poll_title = this.state.title;
@@ -28,7 +31,7 @@ const CreatePoll = React.createClass({
 
     $.ajax()
   },
-
+//handles the submission of a poll
   handleSubmit: function(e) {
     e.preventDefault();
     let text = this.refs.choice.value.trim();
@@ -38,7 +41,7 @@ const CreatePoll = React.createClass({
     console.log(this.state);
     this.refs.choice.value = '';
   },
-
+// adds the choices to the DOM after each is inputed
   renderOptions: function() {
      return this.state.choices.map( (ele) => <li> {ele} </li> );
   },
