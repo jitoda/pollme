@@ -18,7 +18,7 @@ ReactDOM.render((
   <Route path="/app" component={App}>
     <Route path="/home" component={Home}/>
     <Route path="/create" component={CreatePoll}/>
-    <Route path="/poll/:id" component={Poll}>
+    <Route path="/poll" component={Poll}>
      <Route path="/todoPoll" component={Todo}/>
      <Route path="/viewPoll" component={View}/>
     </Route>

@@ -12,16 +12,26 @@ const Initial = React.createClass({
   // },
 	render: function () {
 		return (
-			<div>
-        <p> Login </p>
+      <div>
+        <h1> Poll Me </h1>  
+        <h4> Login </h4>
+        <div className='login'>
+          <form method="POST" action='http://localhost:4000/login'>
+            <div className="row">
+              <div className="input-field col s12">
+                <input name="username" type="text" />
+                <label for="username">Username</label>
+              </div>
+              <div className="input-field col s12"> 
+                <input name="password" type="password" />
+                <label for="password">Passwor</label>
+              </div>
+              <input type='submit' value="login" className="waves-effect waves-light btn" />
+            </div>
+          </form>
+        </div>
 
-        <form method="POST" action='http://localhost:4000/login'>
-          <input name="username" type="text" placeholder="username" />
-          <input name="password" type="password" placeholder="password" />
-          <input type='submit' value="login" />
-        </form>
-
-          <div>
+          <div className="signup-link">
             <a href='/#/signup'> Sign-up </a>
           </div> 
 

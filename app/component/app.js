@@ -6,12 +6,11 @@ const App = React.createClass({
    return (
      <div>
        <header className="head" >
-         <h1>Poll Me</h1>
-         <nav>
+         <h1 className="title">Poll Me</h1>
+         <nav className="nav">
            <ul>
              <li><Link to="/home">Home</Link></li>
              <li><Link to="/create">Create Poll</Link></li>
-             <li><Link to="/poll">poll</Link></li>
            </ul>
          </nav>
        </header>
