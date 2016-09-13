@@ -1,4 +1,5 @@
 body {
+
   background: #3F51B5;
   height: 100%;
   width: 100%;
@@ -12,18 +13,27 @@ font-family: 'Bungee Inline', cursive;
 
 }
 #root{
-  margin: 20px;
+ margin: 20px;
 }
 .login{
-  width:250px;
-  margin: 0 auto;
+ width:250px;
+ margin: 0 auto;
 }
 .input-field label{
-  color: #fff;
+ color: #fff;
 }
 .signup-link a{
-  font-size: 15px;
-  color:#fff;
-  border: solid 1px #fff;
-  padding: 5px;
+ font-size: 15px;
+ color:#fff;
+ border: solid 1px #fff;
+ padding: 5px;
+}
+#options-table{
+ color: #fff;
+ font-size: 18px;
+}
+#options-table li {
+	padding: 5px;
+	margin-bottom: 3px;
+	border: solid 1px #fff;
 }
