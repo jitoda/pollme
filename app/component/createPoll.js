@@ -14,13 +14,9 @@ const CreatePoll = React.createClass({
     this.setState({title: e.target.value});
     console.log(this.state.title);
   },
-<<<<<<< HEAD
 // creates the poll object that will be posted to the database
   postPoll: function(uid) {
-=======
 
-  postPoll: function() {
->>>>>>> 35d15a677cfc2329b0dd6be4a178679804ad4efa
     let postObj = {};
     postObj.poll_title = this.state.title;
     postObj.created_by = this.state.userId;
