@@ -12,6 +12,7 @@ const Initial = React.createClass({
   // },
 	render: function () {
 		return (
+
 	<div>
        <h1> Poll Me </h1>  
        <h4> Login </h4>

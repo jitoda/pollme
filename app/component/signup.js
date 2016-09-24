@@ -3,6 +3,7 @@ const React = require('react');
 const Signup = React.createClass({
 	render() {
 		return (
+
 			<div>
        <h1> Poll Me </h1>    
                 <h4> Signup </h4>

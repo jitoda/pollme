@@ -2,17 +2,25 @@ const React = require('react');
 import cookie from 'react-cookie';
 import ReactDOM from 'react-dom'
 
+// All of our logic is in this createPoll class right now
+// had issues passing props from the poll.js container
 const CreatePoll = React.createClass({
+// hold the title and options as their added in the forms in real time
   getInitialState: function () {
     return {title: '', choices: [], userId: 0};
   },
-  
+// updates the title state  to the value of the input
   handleTitleChange: function(e) {
     this.setState({title: e.target.value});
     console.log(this.state.title);
   },
+<<<<<<< HEAD
+// creates the poll object that will be posted to the database
+  postPoll: function(uid) {
+=======
 
   postPoll: function() {
+>>>>>>> 35d15a677cfc2329b0dd6be4a178679804ad4efa
     let postObj = {};
     postObj.poll_title = this.state.title;
     postObj.created_by = this.state.userId;
@@ -32,7 +40,7 @@ const CreatePoll = React.createClass({
       data: postObj
     });
   },
-
+//handles the submission of a poll
   handleSubmit: function(e) {
     e.preventDefault();
     let text = this.refs.choice.value.trim();
@@ -42,6 +50,7 @@ const CreatePoll = React.createClass({
     console.log("this.state in handlesubmit", this.state);
     this.refs.choice.value = '';
   },
+
      renderOptions: function() {
      return this.state.choices.map( (ele) => <li> {ele} </li> );
   },
